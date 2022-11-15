@@ -18,10 +18,10 @@ type estudante struct {
 func main() {
 	fmt.Println("Herança")
 
-	p1 := pessoa{"Dayane", "Roson", 26, 167}
+	p1 := pessoa{"xcvxcv", "xcvxcvxv", 26, 167}
 	fmt.Println(p1)
 
-	e1 := estudante{p1, "Engenharia Elétrica", "UCP"}
+	e1 := estudante{p1, "xcvxvcxvcx", "Uxcvxcvxcv"}
 	fmt.Println(e1)
 	fmt.Println(e1.nome)
 }

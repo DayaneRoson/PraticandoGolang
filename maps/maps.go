@@ -14,12 +14,12 @@ func main() {
 
 	usuario2 := map[string]map[string]string{
 		"nome": {
-			"primeiro": "Dayane",
-			"ultimo":   "Vihuchi",
+			"primeiro": "Joao",
+			"ultimo":   "das Neves",
 		},
 		"curso": {
-			"nome":   "Engenharia",
-			"campus": "BA",
+			"nome":   "Letras",
+			"campus": "kkk",
 		},
 	}
 

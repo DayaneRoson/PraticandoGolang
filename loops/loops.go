@@ -32,8 +32,8 @@ func main() {
 	// }
 
 	usuario := map[string]string{
-		"nome":      "Dayane",
-		"sobrenome": "Roson",
+		"nome":      "Go",
+		"sobrenome": "lang",
 	}
 
 	for chave, valor := range usuario {
