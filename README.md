@@ -33,3 +33,5 @@ Este repositório lista exercícios simples exemplificando os fundamentos básic
 * Interfaces
   * Aplicação tradicional
   * Interface Genérica
+* Concorrência
+  * Goroutines
