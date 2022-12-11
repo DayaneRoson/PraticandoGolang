@@ -35,3 +35,4 @@ Este repositório lista exercícios simples exemplificando os fundamentos básic
   * Interface Genérica
 * Concorrência
   * Goroutines
+  * Wait Groups
