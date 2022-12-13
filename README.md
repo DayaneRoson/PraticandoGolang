@@ -37,3 +37,4 @@ Este repositório lista exercícios simples exemplificando os fundamentos básic
   * Goroutines
   * Wait Groups
   * Canais (Channels)
+    * Buffer
