@@ -38,3 +38,4 @@ Este repositório lista exercícios simples exemplificando os fundamentos básic
   * Wait Groups
   * Canais (Channels)
     * Buffer
+  * Select
