@@ -36,3 +36,4 @@ Este repositório lista exercícios simples exemplificando os fundamentos básic
 * Concorrência
   * Goroutines
   * Wait Groups
+  * Canais (Channels)
