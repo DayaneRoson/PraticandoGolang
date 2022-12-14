@@ -39,3 +39,5 @@ Este repositório lista exercícios simples exemplificando os fundamentos básic
   * Canais (Channels)
     * Buffer
   * Select
+  * Padrões de Concorrência (Concurrency Patterns)
+    * Worker pools
