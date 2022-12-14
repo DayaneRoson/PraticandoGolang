@@ -41,3 +41,4 @@ Este repositório lista exercícios simples exemplificando os fundamentos básic
   * Select
   * Padrões de Concorrência (Concurrency Patterns)
     * Worker pools
+    * Generators
