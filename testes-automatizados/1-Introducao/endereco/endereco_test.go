@@ -1,6 +1,9 @@
-package endereco
+package endereco_test
 
-import "testing"
+import (
+	. "introducao-testes/endereco"
+	"testing"
+)
 
 type testingScenes struct {
 	addressInput    string
@@ -8,6 +11,7 @@ type testingScenes struct {
 }
 
 func TestTipoEndereco(t *testing.T) {
+	t.Parallel()
 
 	testingScenes := []testingScenes{
 		{"Rua ABC", "Rua"},
@@ -24,5 +28,12 @@ func TestTipoEndereco(t *testing.T) {
 		if addressReceived != scene.addressExpected {
 			t.Errorf("Test on endereco package failed: Expected: %s, found: %s", scene.addressExpected, addressReceived)
 		}
+	}
+}
+
+func TestQualquer(t *testing.T) {
+	t.Parallel()
+	if 1 > 2 {
+		t.Error("Test failed")
 	}
 }
