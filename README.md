@@ -44,4 +44,5 @@ Este repositório lista exercícios simples exemplificando os fundamentos básic
     * Generators
     * Multiplexador<br/>
   <br/>
-  ### Testes Automatizados
+### Testes Automatizados
+  * Múltiplos Casos
