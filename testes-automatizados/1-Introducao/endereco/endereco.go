@@ -3,7 +3,7 @@ package endereco
 import "strings"
 
 func TipoEndereco(endereco string) string {
-	validType := []string{"Rua", "Servidao", "Avenida", "Estrada"}
+	validType := []string{"Rua", "Servidao", "Avenida", "Estrada", "Praça"}
 
 	firstWord := strings.Split(endereco, " ")[0]
 
