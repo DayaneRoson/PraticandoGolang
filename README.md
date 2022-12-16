@@ -47,5 +47,11 @@ Este repositório lista exercícios simples exemplificando os fundamentos básic
 ### Testes Automatizados
   * Testes com cenário único
   * Testes com múltiplos cenários
-  * Testes com Sub Rotinas
+  * Testes com Sub Rotinas<br/>
+  <br/>
+### Fundamentos Adicionais
+  * JSON
+    * Função Marshall
+    * 
+  
   
