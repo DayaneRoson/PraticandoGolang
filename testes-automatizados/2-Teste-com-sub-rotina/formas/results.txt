@@ -1,0 +1,3 @@
+mode: set
+teste-com-sub-rotina/formas/formas.go:12.35,14.2 1 1
+teste-com-sub-rotina/formas/formas.go:20.33,22.2 1 1

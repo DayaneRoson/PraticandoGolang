@@ -45,4 +45,7 @@ Este repositório lista exercícios simples exemplificando os fundamentos básic
     * Multiplexador<br/>
   <br/>
 ### Testes Automatizados
-  * Múltiplos Casos
+  * Testes com cenário único
+  * Testes com múltiplos cenários
+  * Testes com Sub Rotinas
+  
