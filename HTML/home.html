@@ -14,20 +14,19 @@
         font-family: Arial, Helvetica, sans-serif;
     }
 
-    marquee {
-        color: aquamarine;
-    }
+    
 </style>
 
 <body>
     <h2 >
         Página Principal
     </h2>
-    <marquee>
-        <h4>
-            Seja Bem Vindo, {{.Nome }}
-        </h4>
-    </marquee>
-    
+    <button id="botao">Clique em mim</button>
+    <script>
+        var botao = document.getElementById("botao")
+        botao.onclick = function() {
+            alert("Botao clicado com sucesso")
+        }
+    </script>
 </body>
 </html>
