@@ -56,5 +56,5 @@ Este repositório lista exercícios simples exemplificando os fundamentos básic
     * Função Marshall
     * Função Unmarshall
     * Servidor HTTP
-    * 
+    * Renderização de páginas Web
   
