@@ -171,3 +171,34 @@ func UpdateUser(w http.ResponseWriter, r *http.Request) {
 	}
 	w.WriteHeader(http.StatusNoContent)
 }
+
+// DeleteUser deletes an user on database
+func DeleteUser(w http.ResponseWriter, r *http.Request) {
+	parameters := mux.Vars(r)
+	ID, error := strconv.ParseUint(parameters["id"], 10, 16)
+	if error != nil {
+		w.Write([]byte("Could not parse URI parameter"))
+		return
+	}
+
+	db, error := banco.Connection()
+	if error != nil {
+		w.Write([]byte("Could not connect to database"))
+		return
+	}
+	defer db.Close()
+
+	statement, error := db.Prepare("delete from usuarios where id = ?")
+	if error != nil {
+		w.Write([]byte("Could not prepare query string"))
+		return
+	}
+	defer statement.Close()
+
+	if _, error := statement.Exec(ID); error != nil {
+		w.Write([]byte("Could not delete user on database"))
+		return
+	}
+
+	w.WriteHeader(http.StatusNoContent)
+}
