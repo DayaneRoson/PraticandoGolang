@@ -128,3 +128,46 @@ func GetUser(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 }
+
+// UpdateUser updates an user on database
+func UpdateUser(w http.ResponseWriter, r *http.Request) {
+	parameters := mux.Vars(r)
+
+	ID, error := strconv.ParseUint(parameters["id"], 10, 32)
+	if error != nil {
+		w.Write([]byte("Could not read variable"))
+		return
+	}
+
+	body, error := io.ReadAll(r.Body)
+	if error != nil {
+		w.Write([]byte("Could not read json"))
+		return
+	}
+
+	var usuario usuario
+	if error := json.Unmarshal(body, &usuario); error != nil {
+		w.Write([]byte("Could not parse json data"))
+		return
+	}
+
+	db, error := banco.Connection()
+	if error != nil {
+		w.Write([]byte("Could not connect to database"))
+		return
+	}
+	defer db.Close()
+
+	statement, error := db.Prepare("update usuarios set nome = ?, email = ? where id = ?")
+	if error != nil {
+		w.Write([]byte("Could not prepare query string"))
+		return
+	}
+	defer statement.Close()
+
+	if _, error := statement.Exec(usuario.Nome, usuario.Email, ID); error != nil {
+		w.Write([]byte("Could not update user"))
+		return
+	}
+	w.WriteHeader(http.StatusNoContent)
+}
