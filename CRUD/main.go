@@ -17,6 +17,8 @@ func main() {
 	//DELETE - DELETE
 	router := mux.NewRouter()
 	router.HandleFunc("/usuarios", servidor.CreateUser).Methods(http.MethodPost)
+	router.HandleFunc("/usuarios", servidor.GetUsers).Methods(http.MethodGet)
+	router.HandleFunc("/usuarios/{id}", servidor.GetUser).Methods(http.MethodGet)
 
 	fmt.Println("Escutando na porta 5000")
 	log.Fatal(http.ListenAndServe(":5000", router))

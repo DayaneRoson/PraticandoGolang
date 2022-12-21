@@ -4,8 +4,11 @@ import (
 	"crud/banco"
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"net/http"
+	"strconv"
+
+	"github.com/gorilla/mux"
 )
 
 type usuario struct {
@@ -14,8 +17,9 @@ type usuario struct {
 	Email string `json:"email"`
 }
 
+// CreateUser creates an user on database
 func CreateUser(w http.ResponseWriter, r *http.Request) {
-	body, erro := ioutil.ReadAll(r.Body)
+	body, erro := io.ReadAll(r.Body)
 	if erro != nil {
 		w.Write([]byte("Coud not read json"))
 		return
@@ -52,4 +56,75 @@ func CreateUser(w http.ResponseWriter, r *http.Request) {
 	}
 	w.WriteHeader(http.StatusCreated)
 	w.Write([]byte(fmt.Sprintf("Query executed sucessfully. ID: %d", idInserted)))
+}
+
+// GetUsers fetches all users saved on database
+func GetUsers(w http.ResponseWriter, r *http.Request) {
+	db, error := banco.Connection()
+	if error != nil {
+		w.Write([]byte("Could not connect to database"))
+		return
+	}
+	defer db.Close()
+
+	rows, error := db.Query("select * from usuarios")
+	if error != nil {
+		w.Write([]byte("Coud not fetch users"))
+		return
+	}
+	defer rows.Close()
+
+	var usuarios []usuario
+	for rows.Next() {
+		var usuario usuario
+		if error := rows.Scan(&usuario.ID, &usuario.Nome, &usuario.Email); error != nil {
+			w.Write([]byte("Could not scan user, format may be wrong"))
+			return
+		}
+
+		usuarios = append(usuarios, usuario)
+	}
+	w.WriteHeader(http.StatusOK)
+	if error := json.NewEncoder(w).Encode(usuarios); error != nil {
+		w.Write([]byte("Could not parse users to json, format may be wrong"))
+		return
+	}
+}
+
+// GetUser fetches an user saved on database
+func GetUser(w http.ResponseWriter, r *http.Request) {
+	parameters := mux.Vars(r)
+
+	ID, error := strconv.ParseUint(parameters["id"], 10, 16)
+	if error != nil {
+		w.Write([]byte("Could not parse URI parameter"))
+		return
+	}
+
+	db, error := banco.Connection()
+	if error != nil {
+		w.Write([]byte("Could not connect to database"))
+		return
+	}
+
+	row, error := db.Query("select * from usuarios where id = ?", ID)
+	if error != nil {
+		w.Write([]byte("Could not execute query string"))
+		return
+	}
+
+	defer row.Close()
+
+	var usuario usuario
+	if row.Next() {
+		if error := row.Scan(&usuario.ID, &usuario.Nome, &usuario.Email); error != nil {
+			w.Write([]byte("Could not scan user"))
+			return
+		}
+	}
+
+	if error := json.NewEncoder(w).Encode(usuario); error != nil {
+		w.Write([]byte("Could not parse user, format may be wrong"))
+		return
+	}
 }
